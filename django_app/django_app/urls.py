@@ -1,4 +1,4 @@
-from django.urls import include, path
+from django.urls import path, include 
 from django.contrib import admin
 
 from to_do.urls import router as to_do_router
