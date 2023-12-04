@@ -2,36 +2,61 @@
   <!-- 　ここから　-->
   <div class="center">
     <div class="row">
-      <div class="col-sm-8 col-sm-offset-2">
+      <div class="col-sm-8 offset-sm-2">
         <input [(ngModel)]="todo.title"
           id="input_text"
           type="text"
           length="140"
           class="form-control add-todo"
           placeholder="add-todo"
-          (keydown.enter)="save()"
-        >
+          (keydown.enter)="save()">
         <button (click)="save()" class="btn btn-success pull-right add-todo">Add</button>
       </div>
     </div>
   </div>
-  <div class="newtodo-list row" style="margin-top:10px;">
-    <div *ngFor="let newtodo of newtodos" class="col-sm-8 col-sm-offset-2">
-      <div class="panel panel-default">
-        <div class="panel-body">
+  <div class="newtodo-list row mt-3">
+    <div *ngFor="let newtodo of newtodos" class="col-sm-8 offset-sm-2">
+      <div class="card">
+        <div class="card-body">
           <span>{{newtodo.title}}</span>
         </div>
       </div>
     </div>
   </div>
-  <hr class="col-sm-8 col-sm-offset-2">
+  <hr class="my-4">
   <!-- 　ここまで　-->
-    <div class="todo-list row">
-      <div *ngFor="let todo of todos" class="col-sm-8 col-sm-offset-2">
-         <div class="panel panel-default">
-            <div class="panel-body">
-              <span from="name">{{todo.title}}</span>
+  <div class="todo-list row">
+    <div *ngFor="let todo of todos" class="col-sm-8 offset-sm-2">
+      <div class="card">
+        <div class="card-body">
+          <!-- 編集モードでない場合にタイトルと編集ボタンを表示 -->
+          <div *ngIf="!todo.isEdit">
+            <span>{{todo.title}}</span>
+            <button (click)="todo.isEdit=true" type="button" class="btn btn-primary btn-circle">
+              <i class="fa fa-edit"></i> <!-- 編集アイコン -->
+            </button>
           </div>
+  
+          <!-- 編集モードの場合に入力フィールドと保存ボタンを表示 -->
+          <div *ngIf="todo.isEdit">
+            <input [(ngModel)]="todo.title"
+                   id="input_text"
+                   type="text"
+                   length="140"
+                   style="border:none; width:70%">
+            <button (click)="todo.isEdit=false; update(todo.id, todo.title)" type="button" class="btn btn-success btn-circle">
+              <i class="fa fa-save"></i> <!-- 保存アイコン -->
+            </button>
+          </div>
+  
+          <!-- 削除ボタン -->
+          <button (click)="delete(todo.id)" type="button" class="btn btn-danger btn-circle pull-right">
+            <i class="fa fa-trash"></i> <!-- 削除アイコン -->
+          </button>
+        </div>
       </div>
     </div>
+  </div>
+  
+  
 </div>

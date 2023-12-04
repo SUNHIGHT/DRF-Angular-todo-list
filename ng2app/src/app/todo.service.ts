@@ -47,7 +47,30 @@ export class TodoService {
         .catch(this.handleError);
     }
     
-    
+    // 削除時の挙動
+  delete(id: number): Promise<void> {
+    const url = `${this.Url}${id}/`;
+    return this.http
+      .delete(url, {headers: this.headers})
+      .toPromise()
+      .then(() => null)
+      .catch(this.handleError);
+  }
+
+  // 更新時の挙動
+  update(todo: Todo): Promise<Todo> {
+    const url = `${this.Url}${todo.id}/`;
+    return this.http.put<Todo>(url, todo, { headers: this.headers })
+      .toPromise()
+      .then(response => {
+        if (!response) {
+          throw new Error('No response from server');
+        }
+        return response;
+      })
+      .catch(this.handleError);
+  }
+  
   
 
   private handleError(error: any): Promise<any> {

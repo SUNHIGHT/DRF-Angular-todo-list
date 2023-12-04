@@ -44,4 +44,33 @@ export class TodoListComponent implements OnInit {
   pushData(data: Todo): void {
     this.newtodos.unshift(data);
   }
+
+  // 削除ボタンを押した時の挙動
+  delete(id: number): void {
+    this.todoService
+      .delete(id).then(() =>{
+        this.todos = this.todos.filter(todo => todo.id !== id);
+      }).catch(error => {
+        console.error('Error deleting todo',error);
+      })
+  }
+
+  update(id: number, title: string): void {
+    let updatedTodo = new Todo();
+    updatedTodo.id = id;
+    updatedTodo.title = title;
+  
+    this.todoService.update(updatedTodo).then(updated => {
+      // todos 配列を更新する
+      const index = this.todos.findIndex(todo => todo.id === id);
+      if (index !== -1) {
+        this.todos[index] = updated;
+      }
+    }).catch(error => {
+      console.error('Error updating todo', error);
+    });
+  }
+  
+  
+  
 }
