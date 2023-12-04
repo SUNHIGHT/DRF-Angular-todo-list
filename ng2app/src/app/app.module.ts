@@ -11,7 +11,6 @@ import { AppRoutingModule } from './app-routing.module'; // AppRoutingModule の
   declarations: [
     AppComponent,
     TodoListComponent,
-
     // 他のコンポーネント
   ],
   imports: [

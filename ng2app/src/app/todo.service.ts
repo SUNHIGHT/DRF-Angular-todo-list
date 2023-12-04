@@ -19,35 +19,36 @@ export class TodoService {
       .then(response => response as Todo[]);
   }
 
-  create(todo: Todo): Promise<Todo> {
-    return this.http
-      .post<Todo>(this.Url, todo, {headers: this.headers})
-      .toPromise()
-      .then(response => {
-        // レスポンスが Todo オブジェクトであることを確認
-        if (response instanceof Todo) {
+    // 追加時の挙動
+    create(todo: Todo): Promise<Todo> {
+      return this.http
+        .post<Todo>(this.Url, todo, {headers: this.headers})
+        .toPromise()
+        .then(response => {
+          if (!response) {
+            throw new Error('No response from server');
+          }
           return response;
-        } else {
-          // レスポンスが Todo オブジェクトでない場合の処理
-          throw new Error('Invalid response type');
-        }
-      })
-      .catch(this.handleError);
-  }
-
-  // 最新のTodoを取得する
-  getNewTodo(): Promise<Todo> {
-    return this.http
-      .get<Todo[]>(this.Url + "?limit=1")
-      .toPromise()
-      .then(response => {
-        // response が undefined または 空配列の場合、新しい Todo インスタンスを返す
-        if (!response || response.length === 0) {
-          return new Todo();
-        }
-        return response[0];
-      });
-  }
+        })
+        .catch(this.handleError);
+    }
+    
+    
+    getNewTodo(): Promise<Todo> {
+      return this.http
+        .get<Todo[]>(this.Url + "?limit=1")
+        .toPromise()
+        .then(response => {
+          if (!response || response.length === 0) {
+            throw new Error('No new todos found');
+          }
+          return response[0];
+        })
+        .catch(this.handleError);
+    }
+    
+    
+  
 
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error); // 開発用途のログ
