@@ -44,18 +44,6 @@
               <i class="fa fa-edit"></i> <!-- 編集アイコン -->
             </button>
           </div>
-  
-          <!-- 編集モードの場合に入力フィールドと保存ボタンを表示 -->
-          <!-- <div *ngIf="todo.isEdit">
-            <input [(ngModel)]="todo.title"
-                   id="input_text"
-                   type="text"
-                   length="140"
-                   style="border:none; width:70%">
-            <button (click)="todo.isEdit=false; update(todo.id, todo.title)" type="button" class="btn btn-success btn-circle">
-              <i class="fa fa-save"></i> 
-            </button>
-          </div> -->
 
           <div *ngIf="todo.isEdit">
             <input [(ngModel)]="todo.title"
