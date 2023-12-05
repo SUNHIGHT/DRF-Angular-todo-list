@@ -1,3 +1,4 @@
+// app.module.ts
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -8,19 +9,20 @@ import { TodoListComponent } from '../todo-list/todo-list.component';
 import { TodoService } from '../service/todo.service';
 import { AppRoutingModule } from './app-routing.module'; 
 import { GlobalTabComponent } from '../global-tab/global-tab.component';
+import { DashboardComponent } from '../dashboard/dashboard.component'; // 修正
 
 @NgModule({
   declarations: [
     AppComponent,
     TodoListComponent,
-    
+    GlobalTabComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     NgbModule,
-    HttpClientModule ,
-    GlobalTabComponent,
+    HttpClientModule,
     AppRoutingModule, // AppRoutingModule を追加
     // 他の必要なモジュール
   ],

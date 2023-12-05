@@ -1,8 +1,26 @@
 <p>global-tab works!</p>
 <h2>タイトル</h2>
 
-<nav class="nav nav-tabs">
-    <!-- routerLinkはapproutingmoduleで定義済み -->
-    <a class="nav-item nav-link active" routerLink="/todos" routerLinkActive="active">Todoリスト</a>
-    
-</nav>
+
+<!-- <nav class="nav nav-tabs">
+    <a class="nav-item nav-link" routerLink="/todos" routerLinkActive="active">Todoリスト</a>
+    <a class="nav-item nav-link" routerLink="/dashboad" routerLinkActive="active">ダッシュボード</a>
+</nav> -->
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" routerLink="/">Navbar</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            <a class="nav-item nav-link" routerLink="/todos" routerLinkActive="active">Todoリスト</a>
+            <a class="nav-item nav-link" routerLink="/dashboad" routerLinkActive="active">ダッシュボード</a>
+          <!-- Disabled リンクは変更不要 -->
+          <a class="nav-link disabled">Disabled</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+  

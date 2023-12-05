@@ -3,9 +3,6 @@ import { Component, OnInit,Input  } from '@angular/core';
 import { TodoService } from '../service/todo.service';
 import { Todo } from './todo.model';
 
-import { Router, ActivatedRoute, Params }   from '@angular/router';
-
-
 @Component({
   selector: 'todo-list',
   templateUrl: './todo-list.component.html',
