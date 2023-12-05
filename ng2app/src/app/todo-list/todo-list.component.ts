@@ -1,6 +1,6 @@
 // TodoListComponent
 import { Component, OnInit,Input  } from '@angular/core';
-import { TodoService } from '../todo.service';
+import { TodoService } from '../service/todo.service';
 import { Todo } from './todo.model';
 
 import { Router, ActivatedRoute, Params }   from '@angular/router';

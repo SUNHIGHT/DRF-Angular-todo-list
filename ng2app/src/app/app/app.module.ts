@@ -4,21 +4,23 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
-import { TodoListComponent } from './todo-list/todo-list.component';
-import { TodoService } from './todo.service';
-import { AppRoutingModule } from './app-routing.module'; // AppRoutingModule のインポート
+import { TodoListComponent } from '../todo-list/todo-list.component';
+import { TodoService } from '../service/todo.service';
+import { AppRoutingModule } from './app-routing.module'; 
+import { GlobalTabComponent } from '../global-tab/global-tab.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TodoListComponent,
-    // 他のコンポーネント
+    
   ],
   imports: [
     BrowserModule,
     FormsModule,
     NgbModule,
     HttpClientModule ,
+    GlobalTabComponent,
     AppRoutingModule, // AppRoutingModule を追加
     // 他の必要なモジュール
   ],
