@@ -10,6 +10,14 @@
           class="form-control add-todo"
           placeholder="add-todo"
           >
+        <select [(ngModel)]="todo.priority">
+            <option value="1">低</option>
+            <option value="2">中</option>
+            <option value="3">高</option>
+        </select>重要度
+        <input [(ngModel)]="todo.deadline" type="datetime-local">期日
+        <input [(ngModel)]="todo.completed" type="checkbox">完了・未完了
+        <input [(ngModel)]="todo.is_favorite" type="checkbox">お気に入り
         <button (click)="save()" class="btn btn-success pull-right add-todo">Add</button>
       </div>
     </div>
@@ -38,13 +46,32 @@
           </div>
   
           <!-- 編集モードの場合に入力フィールドと保存ボタンを表示 -->
-          <div *ngIf="todo.isEdit">
+          <!-- <div *ngIf="todo.isEdit">
             <input [(ngModel)]="todo.title"
                    id="input_text"
                    type="text"
                    length="140"
                    style="border:none; width:70%">
             <button (click)="todo.isEdit=false; update(todo.id, todo.title)" type="button" class="btn btn-success btn-circle">
+              <i class="fa fa-save"></i> 
+            </button>
+          </div> -->
+
+          <div *ngIf="todo.isEdit">
+            <input [(ngModel)]="todo.title"
+                   id="input_text"
+                   type="text"
+                   length="140"
+                   style="border:none; width:70%">
+            <select [(ngModel)]="todo.priority">
+              <option value="1">低</option>
+              <option value="2">中</option>
+              <option value="3">高</option>
+            </select>重要度
+            <input [(ngModel)]="todo.deadline" type="datetime-local">期日
+            <input [(ngModel)]="todo.completed" type="checkbox">完了・未完了
+            <input [(ngModel)]="todo.is_favorite" type="checkbox">お気に入り
+            <button (click)="todo.isEdit=false; update(todo.id)" type="button" class="btn btn-success btn-circle">
               <i class="fa fa-save"></i> <!-- 保存アイコン -->
             </button>
           </div>

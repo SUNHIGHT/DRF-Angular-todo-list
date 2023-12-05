@@ -52,11 +52,10 @@ export class TodoListComponent implements OnInit {
       })
   }
 
-  update(id: number, title: string): void {
+  update(id: number): void {
     let updatedTodo = new Todo();
     updatedTodo.id = id;
-    updatedTodo.title = title;
-  
+
     this.todoService.update(updatedTodo).then(updated => {
       // todos 配列を更新する
       const index = this.todos.findIndex(todo => todo.id === id);

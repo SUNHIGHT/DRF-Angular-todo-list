@@ -7,5 +7,5 @@ import { CommonModule } from '@angular/common';
   styleUrl: './global-tab.component.css'
 })
 export class GlobalTabComponent {
-
+  currentDate = new Date();
 }
