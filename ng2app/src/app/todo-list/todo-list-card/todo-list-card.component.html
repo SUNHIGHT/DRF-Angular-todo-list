@@ -1,1 +1,40 @@
-<p>todo-list-card works!</p>
+        <div class="modal-header">
+            おおおおおお
+          <h5 class="modal-title" id="todoModalLabel">aaaaaa
+            {{ operationType === 'create' ? '新規作成' : (operationType === 'edit' ? '編集' : '削除') }}
+          </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- 新規作成や編集の場合に表示するフォーム -->
+          <div *ngIf="operationType !== 'delete'">
+            <input [(ngModel)]="todo.title"
+                   id="input_text"
+                   type="text"
+                   length="140"
+                   style="border:none; width:70%">タイトル
+            <select [(ngModel)]="todo.priority">
+              <option value="1">低</option>
+              <option value="2">中</option>
+              <option value="3">高</option>
+            </select>重要度
+            <input [(ngModel)]="todo.deadline" type="datetime-local">期日
+            <input [(ngModel)]="todo.completed" type="checkbox">完了・未完了
+            <input [(ngModel)]="todo.is_favorite" type="checkbox">お気に入り
+            <!-- 例: 優先度、期限、完了・未完了、お気に入り等 -->
+          </div>
+          <!-- 削除の確認メッセージ -->
+          <div *ngIf="operationType === 'delete'">
+            本当に削除しますか？
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+          <!-- 新規作成や編集の場合に保存ボタンを表示 -->
+          <button type="button" class="btn btn-primary" *ngIf="operationType !== 'delete'" (click)="save()">保存</button>
+          <!-- 削除の場合に削除ボタンを表示 -->
+          <button type="button" class="btn btn-danger" *ngIf="operationType === 'delete'" (click)="delete(todo.id)">削除</button>
+        </div>
+   
