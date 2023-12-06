@@ -14,18 +14,15 @@
     <div *ngFor="let todo of todos" class="col-sm-8 offset-sm-2">
       <div class="card">
         <div class="card-body">
-         
           <div>
-            <span>{{todo.title}}</span>
-            <span>{{todo.deadline}}</span>
-            <span>{{todo.priority}}</span>
-            <span>{{todo.is_favorite}}</span>
-            <span>{{todo.completed}}</span>
-            
+            <div><strong>タイトル：</strong>{{todo.title}}</div>
+            <div><strong>期日：</strong>{{todo.deadline}}</div>
+            <div><strong>重要度：</strong>{{todo.priority}}</div>
+            <div><strong>お気に入り：</strong>{{todo.is_favorite ? 'はい' : 'いいえ'}}</div>
+            <div><strong>完了状況：</strong>{{todo.completed ? '完了' : '未完了'}}</div>
           </div>
           <button class="btn btn-primary" (click)="openEditModal(todo)">編集</button>
           <button class="btn btn-primary" (click)="openDeleteModal(todo)">削除</button>
-
         </div>
       </div>
     </div>
