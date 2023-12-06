@@ -17,7 +17,7 @@ export class TodoListCardComponent {
 
   constructor(
     private todoService: TodoService,
-    private modalService: NgbModal
+    public modalService: NgbModal
     ){}
 
     ngOnInit(): void {
@@ -25,16 +25,21 @@ export class TodoListCardComponent {
         .then(todos => this.todos = todos);
     }
 
-  save(): void {
-    if (this.operationType === 'create') {
-      this.todoService
-      .create(this.todo)
-      .then(data => {this.getNewTodo()});
-    this.todo = new Todo();
-    } else if (this.operationType === 'edit') {
-     
+    save(): void {
+      if (this.operationType === 'create') {
+        this.todoService.create(this.todo)
+          .then(data => {
+            this.getNewTodo();
+            this.modalService.dismissAll(); // モーダルを閉じる
+          });
+      } else if (this.operationType === 'edit') {
+        this.todoService.update(this.todo)
+          .then(updated => {
+            this.modalService.dismissAll(); // モーダルを閉じる
+          });
+      }
     }
-  }
+    
   
 
   // 最新の一件を呼び出す挙動
@@ -51,12 +56,13 @@ export class TodoListCardComponent {
 
   // 削除ボタンを押した時の挙動
   delete(id: number): void {
-    this.todoService
-      .delete(id).then(() =>{
-        this.todos = this.todos.filter(todo => todo.id !== id);
-      }).catch(error => {
-        console.error('Error deleting todo',error);
+    this.todoService.delete(id)
+      .then(() => {
+        this.modalService.dismissAll(); // モーダルを閉じる
       })
+      .catch(error => {
+        console.error('Error deleting todo', error);
+      });
   }
 
   update(id: number): void {

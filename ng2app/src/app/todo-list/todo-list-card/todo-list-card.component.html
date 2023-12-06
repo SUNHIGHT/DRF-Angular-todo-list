@@ -1,6 +1,5 @@
         <div class="modal-header">
-            おおおおおお
-          <h5 class="modal-title" id="todoModalLabel">aaaaaa
+          <h5 class="modal-title" id="todoModalLabel">
             {{ operationType === 'create' ? '新規作成' : (operationType === 'edit' ? '編集' : '削除') }}
           </h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -31,7 +30,8 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+          <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button> -->
+          <button type="button" class="btn btn-secondary" (click)="modalService.dismissAll()">閉じる</button>
           <!-- 新規作成や編集の場合に保存ボタンを表示 -->
           <button type="button" class="btn btn-primary" *ngIf="operationType !== 'delete'" (click)="save()">保存</button>
           <!-- 削除の場合に削除ボタンを表示 -->

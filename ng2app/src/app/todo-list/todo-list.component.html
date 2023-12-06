@@ -1,28 +1,5 @@
 <div class="container">
-  <!-- 　ここから　-->
   <button class="btn btn-primary" (click)="openCreateModal()">新規作成</button>
-  <div class="center">
-    <div class="row">
-      <div class="col-sm-8 offset-sm-2">
-        <input [(ngModel)]="todo.title"
-          id="input_text"
-          type="text"
-          length="140"
-          class="form-control add-todo"
-          placeholder="add-todo"
-          >
-        <select [(ngModel)]="todo.priority">
-            <option value="1">低</option>
-            <option value="2">中</option>
-            <option value="3">高</option>
-        </select>重要度
-        <input [(ngModel)]="todo.deadline" type="datetime-local">期日
-        <input [(ngModel)]="todo.completed" type="checkbox">完了・未完了
-        <input [(ngModel)]="todo.is_favorite" type="checkbox">お気に入り
-        <button (click)="save()" class="btn btn-success pull-right add-todo">Add</button>
-      </div>
-    </div>
-  </div>
   <div class="newtodo-list row mt-3">
     <div *ngFor="let newtodo of newtodos" class="col-sm-8 offset-sm-2">
       <div class="card">
@@ -33,43 +10,19 @@
     </div>
   </div>
   <hr class="my-4">
-  <!-- 　ここまで　-->
   <div class="todo-list row">
     <div *ngFor="let todo of todos" class="col-sm-8 offset-sm-2">
       <div class="card">
         <div class="card-body">
-          <!-- 編集モードでない場合にタイトルと編集ボタンを表示 -->
-          <div *ngIf="!todo.isEdit">
+         
+          <div>
             <span>{{todo.title}}</span>
-            <button (click)="todo.isEdit=true" type="button" class="btn btn-primary btn-circle">
-              <i class="fa fa-edit"></i> <!-- 編集アイコン -->
-            </button>
+            <span>{{todo.deadline}}</span>
+            <span>{{todo.priority}}</span>
+            <span>{{todo.is_favorite}}</span>
+            <span>{{todo.completed}}</span>
+            
           </div>
-
-          <div *ngIf="todo.isEdit">
-            <input [(ngModel)]="todo.title"
-                   id="input_text"
-                   type="text"
-                   length="140"
-                   style="border:none; width:70%">
-            <select [(ngModel)]="todo.priority">
-              <option value="1">低</option>
-              <option value="2">中</option>
-              <option value="3">高</option>
-            </select>重要度
-            <input [(ngModel)]="todo.deadline" type="datetime-local">期日
-            <input [(ngModel)]="todo.completed" type="checkbox">完了・未完了
-            <input [(ngModel)]="todo.is_favorite" type="checkbox">お気に入り
-            <button (click)="todo.isEdit=false; update(todo.id)" type="button" class="btn btn-success btn-circle">
-              <i class="fa fa-save"></i> <!-- 保存アイコン -->
-            </button>
-          </div>
-  
-          <!-- 削除ボタン -->
-          <button (click)="delete(todo.id)" type="button" class="btn btn-danger btn-circle pull-right">
-            <i class="fa fa-trash"></i> <!-- 削除アイコン -->
-          </button>
-          <app-todo-list-card>formArr</app-todo-list-card>
           <button class="btn btn-primary" (click)="openEditModal(todo)">編集</button>
           <button class="btn btn-primary" (click)="openDeleteModal(todo)">削除</button>
 
