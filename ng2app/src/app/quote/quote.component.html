@@ -1,0 +1,41 @@
+<div class="container">
+
+    <!-- 新規追加フォーム -->
+  <div class="newquote-form">
+    <input [(ngModel)]="quote.quote" type="text" class="form-control" placeholder="新しい名言を入力">
+    <input [(ngModel)]="quote.author" type="text" class="form-control" placeholder="著者">
+    <button (click)="save()" class="btn btn-success">新規追加</button>
+  </div>
+
+     <!-- 新しい引用のリスト -->
+  <div class="newquote-list row mt-3">
+    <div *ngFor="let newquote of newquotes" class="col-sm-8 offset-sm-2">
+      <div class="card">
+        <div class="card-body">
+          <span>{{newquote.quote}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="my-4">
+
+  <!-- 引用のリスト -->
+  <div class="quote-list row">
+    <div *ngFor="let quote of quotes" class="col-sm-8 offset-sm-2">
+      <div class="card">
+        <div class="card-body">
+          <div>
+            <div><strong>名言：</strong>{{quote.quote}}</div>
+            <!-- 編集フォーム -->
+            <input [(ngModel)]="quote.quote" type="text" class="form-control" placeholder="名言を編集">
+            <input [(ngModel)]="quote.author" type="text" class="form-control" placeholder="著者を編集">
+            <button (click)="update(quote.id)" class="btn btn-primary">編集</button>
+            <!-- 削除ボタン -->
+            <button (click)="delete(quote.id)" class="btn btn-danger">削除</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

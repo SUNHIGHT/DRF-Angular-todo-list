@@ -7,16 +7,19 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { TodoListComponent } from '../todo-list/todo-list.component';
 import { TodoListCardComponent } from '../todo-list/todo-list-card/todo-list-card.component';
+import { QuoteComponent } from '../quote/quote.component';
 import { TodoService } from '../service/todo.service';
 import { AppRoutingModule } from './app-routing.module'; 
 import { GlobalTabComponent } from '../global-tab/global-tab.component';
 import { DashboardComponent } from '../dashboard/dashboard.component'; // 修正
+import { QuoteService } from '../service/quote.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     TodoListComponent,
     GlobalTabComponent,
+    QuoteComponent,
     TodoListCardComponent,
     DashboardComponent
   ],
@@ -28,7 +31,7 @@ import { DashboardComponent } from '../dashboard/dashboard.component'; // 修正
     AppRoutingModule, // AppRoutingModule を追加
     // 他の必要なモジュール
   ],
-  providers: [TodoService],
+  providers: [TodoService,QuoteService],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
