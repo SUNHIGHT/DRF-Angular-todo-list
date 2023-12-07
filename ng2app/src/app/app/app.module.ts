@@ -13,6 +13,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { GlobalTabComponent } from '../global-tab/global-tab.component';
 import { DashboardComponent } from '../dashboard/dashboard.component'; // 修正
 import { QuoteService } from '../service/quote.service';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { HammerModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { 
+	IgxCalendarModule,
+	IgxDialogModule
+ } from "igniteui-angular";
+import { CalenderComponent } from "../todo-list/calender/calender.component";
 
 @NgModule({
   declarations: [
@@ -21,15 +30,24 @@ import { QuoteService } from '../service/quote.service';
     GlobalTabComponent,
     QuoteComponent,
     TodoListCardComponent,
-    DashboardComponent
+    DashboardComponent,
+    CalenderComponent,
   ],
   imports: [
     BrowserModule,
-    FormsModule,
+    FormsModule, 
+    BrowserAnimationsModule, 
+    HammerModule, 
+    IgxCalendarModule,
     NgbModule,
     HttpClientModule,
-    AppRoutingModule, // AppRoutingModule を追加
-    // 他の必要なモジュール
+    BrowserModule,
+	  IgxDialogModule,
+    AppRoutingModule, 
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    }),
   ],
   providers: [TodoService,QuoteService],
   bootstrap: [AppComponent],

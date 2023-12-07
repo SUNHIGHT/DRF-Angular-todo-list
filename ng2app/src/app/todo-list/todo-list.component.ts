@@ -9,12 +9,14 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'todo-list',
   templateUrl: './todo-list.component.html',
-  styleUrls: ['./todo-list.component.css']
+  styleUrls: ['./todo-list.component.scss']
 })
 export class TodoListComponent implements OnInit {
   todos: Todo[] = [];
-  newtodos: Todo[] = []; //追記
-  selectedSortOption: string = ''; // ここで初期値を設定
+  newtodos: Todo[] = []; 
+  selectedSortOption: string = ''; 
+  viewDate: Date = new Date();  // 今日の日付
+  events: any[] = [];  // カレンダーイベント
   @Input() todo: Todo = new Todo(); //追記
 
   constructor(
@@ -22,6 +24,7 @@ export class TodoListComponent implements OnInit {
     //モーダル用にNgbModalを追加
     private modalService: NgbModal
   ){}
+
   ngOnInit(): void {
     this.todoService.getAllTodo()
       .then(todos => this.todos = todos);
