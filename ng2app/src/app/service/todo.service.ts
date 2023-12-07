@@ -19,6 +19,14 @@ export class TodoService {
       .then(response => response as Todo[]);
   }
 
+  getAllTodosSorted(sortBy: string): Promise<Todo[]> {
+    const url = `${this.Url}?sort_by=${sortBy}`;
+    return this.http.get<Todo[]>(url)
+      .toPromise()
+      .then(response => response as Todo[])
+      .catch(this.handleError);
+  }
+
     // 追加時の挙動
     create(todo: Todo): Promise<Todo> {
       return this.http

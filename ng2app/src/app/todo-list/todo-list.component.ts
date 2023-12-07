@@ -14,6 +14,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class TodoListComponent implements OnInit {
   todos: Todo[] = [];
   newtodos: Todo[] = []; //追記
+  selectedSortOption: string = ''; // ここで初期値を設定
   @Input() todo: Todo = new Todo(); //追記
 
   constructor(
@@ -24,6 +25,16 @@ export class TodoListComponent implements OnInit {
   ngOnInit(): void {
     this.todoService.getAllTodo()
       .then(todos => this.todos = todos);
+  }
+
+  sortTodos(event: Event): void {
+    // HTMLSelectElement に型アサーションを適用
+    const selectElement = event.target as HTMLSelectElement;
+    const sortValue = selectElement.value;
+  
+    this.todoService.getAllTodosSorted(sortValue)
+      .then(sortedTodos => this.todos = sortedTodos)
+      .catch(error => console.error('Error fetching sorted todos:', error));
   }
 
   openCreateModal() {
