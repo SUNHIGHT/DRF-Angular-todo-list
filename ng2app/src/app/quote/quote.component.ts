@@ -22,7 +22,13 @@ export class QuoteComponent implements OnInit{
   ){}
 
   ngOnInit(): void {
-    this.quoteService.getAllQuote().then(quotes => this.quotes = quotes);
+    this.quoteService.getAllQuote().then(quotes => {
+        this.quotes = quotes.map(q => ({ ...q, isEditing: false }));
+    });
+  }
+
+  toggleEdit(quote: Quote): void {
+    quote.isEditing = !quote.isEditing;
   }
 
   save():void {
@@ -46,26 +52,25 @@ export class QuoteComponent implements OnInit{
     this.newquotes.unshift(data);
   }
 
-  delete(id:number):void {
-    this.quoteService.delete(id).then(() => {
-      this.modalService.dismissAll();
-    })
-    .catch(error => {
-      console.error('Error deleting quotes',error);
-    });
+  update(id: number): void {
+    let updatedQuote = this.quotes.find(q => q.id === id);
+    if (updatedQuote) {
+        this.quoteService.update(updatedQuote).then(updated => {
+            const index = this.quotes.findIndex(quote => quote.id === id);
+            if (index !== -1) {
+                this.quotes[index] = { ...updated, isEditing: false };
+            }
+        }).catch(error => {
+            console.error('Error updating quote', error);
+        });
+    }
   }
-
-  update(id:number): void{
-    let updatedQuote = new Quote();
-    updatedQuote.id = id;
-
-    this.quoteService.update(updatedQuote).then(updated => {
-      const index = this.quotes.findIndex(quote => quote.id === id);
-      if(index !==  -1){
-        this.quotes[index] = updated;
-      }
+  delete(id: number): void {
+    this.quoteService.delete(id).then(() => {
+        this.quotes = this.quotes.filter(quote => quote.id !== id);
     }).catch(error => {
-      console.error('Error updatting quote',error);
-    })
+        console.error('Error deleting quotes', error);
+    });
+
   }
 }

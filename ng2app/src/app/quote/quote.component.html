@@ -13,6 +13,7 @@
       <div class="card">
         <div class="card-body">
           <span>{{newquote.quote}}</span>
+          <span>{{newquote.author}}</span>
         </div>
       </div>
     </div>
@@ -21,21 +22,21 @@
   <hr class="my-4">
 
   <!-- 引用のリスト -->
-  <div class="quote-list row">
-    <div *ngFor="let quote of quotes" class="col-sm-8 offset-sm-2">
-      <div class="card">
+  <div *ngFor="let quote of quotes" class="col-sm-8 offset-sm-2">
+    <div class="card">
         <div class="card-body">
-          <div>
-            <div><strong>名言：</strong>{{quote.quote}}</div>
-            <!-- 編集フォーム -->
-            <input [(ngModel)]="quote.quote" type="text" class="form-control" placeholder="名言を編集">
-            <input [(ngModel)]="quote.author" type="text" class="form-control" placeholder="著者を編集">
-            <button (click)="update(quote.id)" class="btn btn-primary">編集</button>
-            <!-- 削除ボタン -->
-            <button (click)="delete(quote.id)" class="btn btn-danger">削除</button>
-          </div>
+            <div *ngIf="!quote.isEditing">
+                <strong>名言：</strong>{{quote.quote}}
+                <button (click)="toggleEdit(quote)" class="btn btn-primary">編集</button>
+                <button (click)="delete(quote.id)" class="btn btn-danger">削除</button>
+            </div>
+            <div *ngIf="quote.isEditing">
+                <input [(ngModel)]="quote.quote" type="text" class="form-control" placeholder="名言を編集">
+                <input [(ngModel)]="quote.author" type="text" class="form-control" placeholder="著者を編集">
+                <button (click)="update(quote.id)" class="btn btn-primary">更新</button>
+                <button (click)="toggleEdit(quote)" class="btn btn-secondary">キャンセル</button>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
+</div>
 </div>
