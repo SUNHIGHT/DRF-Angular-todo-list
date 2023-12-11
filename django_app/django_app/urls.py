@@ -5,4 +5,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/to_do/', include('to_do.urls')),
     path('api/quote/', include('quote.urls')),
+    path('api/diary/', include('diary.urls')),
 ]

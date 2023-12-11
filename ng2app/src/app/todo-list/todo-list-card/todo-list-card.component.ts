@@ -54,16 +54,17 @@ export class TodoListCardComponent {
     this.newtodos.unshift(data);
   }
 
-  // 削除ボタンを押した時の挙動
-  delete(id: number): void {
-    this.todoService.delete(id)
-      .then(() => {
-        this.modalService.dismissAll(); // モーダルを閉じる
-      })
-      .catch(error => {
-        console.error('Error deleting todo', error);
-      });
+  async delete(todo: Todo): Promise<void> {
+    try {
+      await this.todoService.delete(todo.id); // 削除を待つ
+      this.todos = this.todos.filter(t => t.id !== todo.id); // 削除されたToDoを配列から除外
+    
+      this.modalService.dismissAll(); // モーダルを閉じる
+    } catch (error) {
+      console.error('Error deleting todo', error);
+    }
   }
+  
 
   update(id: number): void {
     let updatedTodo = new Todo();
