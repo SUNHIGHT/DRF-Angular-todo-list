@@ -13,6 +13,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { GlobalTabComponent } from '../global-tab/global-tab.component';
 import { DashboardComponent } from '../dashboard/dashboard.component'; // 修正
 import { QuoteService } from '../service/quote.service';
+import { DiaryComponent } from '../diary/diary.component';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { HammerModule } from '@angular/platform-browser';
@@ -29,6 +30,7 @@ import { CalenderComponent } from "../todo-list/calender/calender.component";
     TodoListComponent,
     GlobalTabComponent,
     QuoteComponent,
+    DiaryComponent,
     TodoListCardComponent,
     DashboardComponent,
     CalenderComponent,
