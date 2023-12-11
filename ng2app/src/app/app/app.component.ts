@@ -7,6 +7,6 @@ import { AppModule } from './app.module';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'Simple Todo';
-  subtitle = 'Angular2 + Django Rest Framework';
+  title = 'BOND';
+  subtitle = 'あなたの身辺管理アプリ';
 }

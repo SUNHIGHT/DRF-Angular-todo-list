@@ -10,4 +10,11 @@ export class DiaryService{
     private headers = new HttpHeaders({'Content-Type': 'application/json'});
 
     constructor(private http:HttpClient){}
+
+    getAllDiary():Promise<Diary[]>{
+        return this.http
+            .get<Diary[]>(this.Url)
+            .toPromise()
+            .then(response => response as Diary[]);
+    }
 }
