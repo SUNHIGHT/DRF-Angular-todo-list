@@ -17,4 +17,45 @@ export class DiaryService{
             .toPromise()
             .then(response => response as Diary[]);
     }
+
+    create(diary:Diary):Promise<Diary>{
+        return this.http
+            .post<Diary>(this.Url,diary,{headers:this.headers})
+            .toPromise()
+            .then(response => {
+                if(!response){
+                    throw new Error('No response from server');
+                }
+                return response;
+            })
+            .catch(this.handleError);
+    }
+
+    delete(id:number):Promise<void>{
+        const url = `${this.Url}${id}/`;
+        return this.http
+            .delete(url,{headers:this.headers})
+            .toPromise()
+            .then(() => null)
+            .catch(this.handleError);
+    }
+
+    update(diary:Diary):Promise<Diary>{
+        const url = `${this.Url}${diary.id}/`;
+        return this.http.put<Diary>(url,diary,{headers:this.headers})
+            .toPromise()
+            .then(response => {
+                if (!response) {
+                  throw new Error('No response from server');
+                }
+                return response;
+              })
+              .catch(this.handleError);
+    }
+
+    private handleError(error: any): Promise<any> {
+        console.error('An error occurred', error); // 開発用途のログ
+        return Promise.reject(error.message || error);
+      }
 }
+
