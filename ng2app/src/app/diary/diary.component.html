@@ -1,1 +1,12 @@
 <p>diary works!</p>
+ここには歴代日記が出力されるようにする。ソート機能や出力機能付き
+<div class="container">aaaa
+    <div *ngFor="let diary of diaries">
+        <div class="card">
+            <div class="card-body">
+                <strong>タイトル</strong>{{ diary.title }}
+                <strong>内容</strong>{{ diary.content }}
+            </div>
+        </div>
+    </div>
+</div>
